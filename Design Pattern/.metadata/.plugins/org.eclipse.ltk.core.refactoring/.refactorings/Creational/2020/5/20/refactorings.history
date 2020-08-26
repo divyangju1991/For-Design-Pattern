@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;singletone.Singletone&apos; to &apos;ClassicSingletone&apos;&#x0D;&#x0A;- Original project: &apos;Creational&apos;&#x0D;&#x0A;- Original element: &apos;singletone.Singletone&apos;&#x0D;&#x0A;- Renamed element: &apos;singletone.ClassicSingletone&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Singletone&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;singletone{Singletone.java[Singletone" matchStrategy="1" name="ClassicSingletone" qualified="false" references="true" similarDeclarations="false" stamp="1589451447285" textual="false" version="1.0"/>
+</session>

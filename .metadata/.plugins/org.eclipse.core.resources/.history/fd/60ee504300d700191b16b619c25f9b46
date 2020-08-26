@@ -1,0 +1,141 @@
+package practice.UnrolledlinkedList;
+
+import java.io.Serializable;
+import java.util.AbstractList;
+import java.util.ConcurrentModificationException;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+
+public class UnrolledLinkedList<E> extends AbstractList<E> implements List<E> {
+
+	@Override
+	public E get(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+    private int nodeCapacity;
+    
+    private int size;
+    
+    private int modeCount;
+    
+    private ListNode firstNode;
+    
+    private ListNode lastNode;
+    
+    public UnrolledLinkedList(int nodeCapacity) throws IllegalAccessException {
+    	if(nodeCapacity < 8) {
+    		throw new IllegalAccessException("nodeCapacity < 8");
+    	}
+    }
+	
+    public UnrolledLinkedList() throws IllegalAccessException{
+    	this(16);
+    }
+    
+    @Override
+	public int size() {
+		return size;
+	}
+    
+    public boolean isEmpty(){
+        return size > 0;	
+    }
+    
+    public boolean contains(Object o) {
+    	return indexOf(o) != -1;
+    }
+    
+    private class ListNode {
+    	
+    	int numElements;
+    	
+    	ListNode next;
+    	
+    	ListNode previous;
+    	
+    	Object[] elements;
+    	
+    	ListNode() {
+    		elements = new Object[nodeCapacity];
+    	}
+    }
+    
+    private class ULListIterator implements ListIterator<E> {
+    	
+    	ListNode currrentNode;
+    	int ptr;
+    	int index;
+    	
+    	private int expectedModeCount = modeCount;
+    	
+    	ULListIterator(ListNode node, int ptr, int index) {
+		  this.currrentNode = node;
+		  this.ptr = ptr;
+		  this.index = index;
+		}
+    	
+    	public boolean hasNext(){
+    		return (index < (size -1));
+    	}
+    	
+    	public boolean hasPrevious(){
+    		return (index > 0);
+    	}
+    	
+    	private void checkForModification() {
+    		if(modCount != expectedModeCount) {
+    			throw new ConcurrentModificationException();
+    		}
+    	}
+    	
+    	public E next() {
+    		ptr++;
+    		
+    		if(ptr >= currrentNode.numElements) {
+    			
+    			if(currrentNode.next != null) {
+    				currrentNode = currrentNode.next;
+					ptr = 0;
+    			} else {
+    			    throw new NoSuchElementException();	
+    			}
+    			
+    		}
+    		
+    		index++;
+    		checkForModification();
+    		return (E) currrentNode.elements[ptr];
+    	}
+    	
+    	public E previous() {
+    		ptr--;
+    		
+    		if(ptr<0){
+    			
+    			if(currrentNode.previous != null) {
+    				currrentNode = currrentNode.previous;
+    				ptr = currrentNode.numElements -1;
+    			} else {
+    				throw new NoSuchElementException(); 
+    			}
+    		}
+    		
+    		index--;
+    		checkForModification();
+    		return (E) currrentNode.elements[ptr];
+    	}
+    	
+    	private int nextIndex(){
+    		return index + 1;
+    	}
+    	
+    	private int previousIndex(){
+    		return index - 1;
+    	}
+    }
+    
+    
+}

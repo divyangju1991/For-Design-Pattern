@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ArraysProj/src/arrayUtility/ConcatenateTwoArrays.java&apos; to &apos;ConcatenateTwoArraysMain.java&apos;" description="Rename resource &apos;ConcatenateTwoArrays.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/arrayUtility/ConcatenateTwoArrays.java" name="ConcatenateTwoArraysMain.java" stamp="1594693976987" updateReferences="true"/>
+</session>

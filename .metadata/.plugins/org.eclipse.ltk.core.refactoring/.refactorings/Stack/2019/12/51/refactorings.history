@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Stack/FileListInOrder&apos; to &apos;FileListInOrder.txt&apos;" description="Rename resource &apos;FileListInOrder&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="FileListInOrder" name="FileListInOrder.txt" stamp="1576901845517" updateReferences="true"/>
+</session>

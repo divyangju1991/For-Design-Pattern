@@ -1,0 +1,13 @@
+package treemap;
+
+import java.util.TreeMap;
+
+public class TreeMapEx {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		TreeMap<String, Integer> t = new TreeMap<String, Integer>();
+	}
+
+}

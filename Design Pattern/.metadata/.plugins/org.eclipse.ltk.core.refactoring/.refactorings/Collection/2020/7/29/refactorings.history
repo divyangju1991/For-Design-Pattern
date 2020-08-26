@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Collection/src/set/CustomSet.java&apos; to &apos;CustomHashSet.java&apos;" description="Rename resource &apos;CustomSet.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/set/CustomSet.java" name="CustomHashSet.java" stamp="1594655777829" updateReferences="true"/>
+</session>

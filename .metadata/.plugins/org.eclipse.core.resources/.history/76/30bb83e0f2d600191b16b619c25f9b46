@@ -1,0 +1,165 @@
+package practice.UnrolledlinkedList;
+
+import java.io.Serializable;
+import java.util.AbstractList;
+import java.util.ConcurrentModificationException;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+
+public class UnrolledLinkedList<E> extends AbstractList<E> implements List<E>, Serializable {
+
+	//The maximum number of elements that can be stored in a single node
+	private int nodeCapacity;
+
+	//The current size of elements
+	private int size = 0;
+	
+	private int modeCount = 0;
+	
+	//The first node of the list
+	private ListNode firstNode;
+	
+	//The last node of the list
+	private ListNode lastNode;
+	
+	public UnrolledLinkedList(int nodeCapacity) throws IllegalArgumentException {
+		if(nodeCapacity <8){
+			throw new IllegalArgumentException("nodeCapacity < 8");
+		}
+	}
+	
+	public UnrolledLinkedList(){
+		this(16);
+	}
+	
+	public int getSize(){
+		return size;
+	}
+	
+	public boolean isEmpty() {
+		return (size <= 0);
+	}
+	
+	public boolean conatains(Object o){
+		return (indexOf(o) != -1);
+	}
+	
+
+	@Override
+	public E get(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	private class ListNode {
+		
+		ListNode next;
+		ListNode previous;
+		int numElements = 0;
+		
+		Object[] elements;
+		
+		ListNode(){
+			elements = new Object[nodeCapacity];
+		}
+		
+	}
+	
+	private class ULLListIterator implements ListIterator<E> {
+		
+		ListNode currentNode;
+		int ptr;
+		int index;
+		
+		private int expectedModCOunt = modeCount;
+		
+		ULLListIterator(ListNode node, int ptr, int index) {
+			this.currentNode = currentNode;
+			this.ptr = ptr;
+			this.index = index;
+		}
+		
+		public boolean hasNext() {
+			return (index < (size-1));
+		}
+		
+		public boolean hasPrevous() {
+			return (index > 0);
+		}
+		
+		public E next() {
+			
+			ptr++;
+			if(ptr >= currentNode.numElements) {
+			
+				if(currentNode.next != null) {
+					currentNode = currentNode.next;
+					ptr = 0;
+				} else {
+					throw new NoSuchElementException();
+				}
+				
+			}
+			
+			index++;
+			checkForModification();
+			return (E) currentNode.elements[ptr];
+		}
+		
+		private void checkForModification() {
+			if(modCount != expectedModCOunt) {
+				throw new ConcurrentModificationException();
+			}
+			
+		}
+		
+		public E previous() {
+			ptr--;
+			if(ptr < 0) {
+				
+				if(currentNode.previous != null) {
+					currentNode= currentNode.previous;
+					ptr = currentNode.numElements -1;
+				} else {
+					throw new NoSuchElementException();
+				}
+			}
+			index--;
+			checkForModification();
+			return (E) currentNode.elements[ptr];
+		}
+		
+		public int nextIndex(){
+			return (index + 1);
+		}
+		
+		public int previousIndex(){
+			return (index -1);
+		}
+		
+		public void remove() {
+			checkForModification();
+			
+		}
+		
+		public void set(E e) {
+			checkForModification();
+			currentNode.elements[ptr] = e;
+		}
+		
+		public void add(E e){
+			checkForModification();
+			
+		}
+		
+	}
+
+
+}

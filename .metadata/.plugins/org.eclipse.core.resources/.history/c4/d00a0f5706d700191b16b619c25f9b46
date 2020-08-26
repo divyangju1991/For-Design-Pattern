@@ -1,0 +1,69 @@
+package practice.UnrolledlinkedList;
+
+import java.io.Serializable;
+import java.util.AbstractList;
+import java.util.ConcurrentModificationException;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+
+public class UnrolledlinkedList<E> extends AbstractList<E> implements List<E> {
+	
+	private int size;
+	
+	private int modeCount;
+	
+	private int nodeCapacity;
+	
+	private ListNode firstNode;
+	
+	private ListNode lastNode;
+	
+	public UnrolledlinkedList(int nodeCapacity) throws IllegalAccessException {
+		
+		if(nodeCapacity < 8) {
+			throw new IllegalArgumentException("nodeCapacity < 8");
+		} 
+	}
+	
+	public UnrolledlinkedList() {
+		this(16);
+	}
+	
+	public boolean isEmpty() {
+	   return size <= 0;	
+	}
+	
+	public boolean contains(Object o) {
+		return indexOf(o) != -1;
+	}
+	
+	private class ListNode {
+		
+		ListNode next;
+		
+		ListNode previous;
+		
+		Object[] elements;
+		
+		ListNode() {
+			elements = new Object[nodeCapacity];
+		}
+		
+	}
+	
+	private class ULListIterator implements ListIterator<E>{
+		
+		ListNode currNode;
+		
+		int ptr;
+		
+		int index;
+		
+		int expectedModCount = modeCount;
+		
+		
+		
+	}
+	
+}

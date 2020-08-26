@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;LinkedList/LinkedListUML.ucls&apos; to &apos;SinglyLinkedList.ucls&apos;" description="Rename resource &apos;LinkedListUML.ucls&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="LinkedListUML.ucls" name="SinglyLinkedList.ucls" stamp="1574908161154" updateReferences="true"/>
+</session>

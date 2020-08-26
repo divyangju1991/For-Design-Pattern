@@ -1,0 +1,78 @@
+package ApplicableProg;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
+public class ValidSymbolPattern {
+	
+	private static final Map<Character, Character> CONSTANT_MAP = 
+		    Collections.unmodifiableMap(new HashMap<Character, Character>() {{ 
+		        put('}', '{');
+		        put(']', '[');
+		        put(')', '(');
+		    }});
+	
+	private static final ArrayList<Character> CHARSYMBOLS = new ArrayList<Character>(Collections.unmodifiableList(new ArrayList<Character>() {{
+		                                                         add('{');
+		                                                         add('(');
+		                                                         add('[');
+		                                                         add('}');
+		                                                         add(')');
+		                                                         add(']');
+	                                                             }}));
+	
+	public boolean isValidSymbol(String s) {
+		
+		Stack<Character> stack = new Stack<Character>();
+		
+		boolean isValidSymbol = true;
+		
+		if(s == null || s.isEmpty()) {
+			return true;
+		}
+		
+		for(int i=0; i<s.length(); i++){
+			
+			if(CHARSYMBOLS.contains(s.charAt(i))){
+				
+				if(CONSTANT_MAP.containsKey(s.charAt(i))){
+					
+					if(!stack.isEmpty() && stack.peek() == CONSTANT_MAP.get(s.charAt(i))) {
+						stack.pop();
+					} else {
+						return false;
+					}
+					
+				} else {
+					stack.push(s.charAt(i));
+				}
+				
+			}
+		}
+		
+		if(stack.isEmpty()){
+			isValidSymbol = true; 
+		} else {
+			isValidSymbol = false;
+		}
+		
+		return isValidSymbol;
+	}
+
+	public static void main(String[] args) {
+		
+		System.out.println("1 false = " + new ValidSymbolPattern().isValidSymbol("{abc") );
+		System.out.println("2 true = " + new ValidSymbolPattern().isValidSymbol("abc") );
+		System.out.println("3 true = " + new ValidSymbolPattern().isValidSymbol("") );
+		System.out.println("4 true = " + new ValidSymbolPattern().isValidSymbol("[{()}]") );
+		System.out.println("5 false = " + new ValidSymbolPattern().isValidSymbol("[{()}](") );
+		System.out.println("6 false = " + new ValidSymbolPattern().isValidSymbol("([{()}]") );
+		System.out.println("7 true = " + new ValidSymbolPattern().isValidSymbol("[{([{[{([{[[[()]]]}])}]}])}]") );
+		
+		
+	}
+
+}

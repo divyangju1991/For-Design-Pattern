@@ -1,0 +1,18 @@
+package problems;
+
+import java.util.HashMap;
+
+public class CheckDuplicatesImprove5 {
+
+	public int isDuplicateFound(int a[]){
+		
+		int n=a.length;
+		for(int i=0;i<n;i++){
+			if(a[Math.abs(a[i])]<0)
+			   return a[i];
+			else
+			   a[a[i]]=-a[a[i]];
+		 }
+		return -1;
+	}
+}

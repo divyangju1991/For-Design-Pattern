@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;MultiThreadProgs/src/exceptionHandling/MyRunnable.java&apos;" deleteContents="false" description="Delete resource &apos;MultiThreadProgs/src/exceptionHandling/MyRunnable.java&apos;" element1="/MultiThreadProgs/src/exceptionHandling/MyRunnable.java" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1594452239414"/>
+</session>

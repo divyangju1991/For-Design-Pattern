@@ -1,0 +1,13 @@
+package problems;
+
+public class QueueWithTwoStackMain {
+
+	
+	public static void main(String args[]) {
+	
+		QueueWithTwoStack<Integer> queueWithTwoStack = new QueueWithTwoStack<Integer>();
+		
+	}
+	
+	
+}

@@ -1,0 +1,68 @@
+package practice.UnrolledlinkedList;
+
+import java.util.Iterator;
+import java.util.ListIterator;
+
+public class Dummy2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		try {
+			UnrolledLinkedList<Integer> list = new UnrolledLinkedList<Integer>();
+			list.add(5);
+			list.add(8);
+			list.add(3);
+			list.add(2);
+			list.add(10);
+			list.add(15);
+			list.add(18);
+			list.add(13);
+			list.add(12);
+			list.add(29);
+			list.add(16);
+			list.add(19);
+			list.add(87);
+			list.add(64);
+			list.add(97);
+			list.add(33);
+			list.add(55);
+			list.add(26);
+			list.add(59);
+			list.add(82);
+			list.add(38);
+			list.add(25);
+			list.add(50);
+			list.add(46);
+			list.add(69);
+			list.add(77);
+			list.add(87);
+			list.add(88);
+			list.add(99);
+			list.add(24);
+			list.add(23);
+			
+			System.out.println(list.toString());
+			
+//			Iterator listIterator = list.iterator();
+//			
+//			while(listIterator.hasNext()){
+//				System.out.println(listIterator.next());
+//			}
+			
+			list.remove(Integer.valueOf(5));
+			
+			System.out.println(list.toString());
+			
+			list.remove(2);
+			
+			System.out.println(list.toString());
+			
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+}

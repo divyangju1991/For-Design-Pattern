@@ -1,0 +1,17 @@
+package problems;
+
+import java.util.Stack;
+
+public class QueueWithTwoStack {
+
+	private Stack s1 = new Stack();
+	private Stack s2 = new Stack(); 
+	
+	public void enQueue(T data){
+		s1.push(data);
+	}
+	
+	public T deQueue(){
+		
+	}
+}

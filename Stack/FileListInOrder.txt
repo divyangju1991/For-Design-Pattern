@@ -1,0 +1,8 @@
+FixedSizeArrayStack.java
+DynamicSizeArrayStack.java
+LinkedStack.java
+ValidSymbolPattern.java
+ExprEvaluation.java
+AdvanceStack (To get Minimum)
+isPalindrome
+StackReversal

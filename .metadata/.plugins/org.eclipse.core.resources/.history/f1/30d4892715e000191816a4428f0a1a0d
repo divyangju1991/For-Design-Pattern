@@ -1,0 +1,301 @@
+package practice.UnrolledlinkedList;
+
+import java.io.Serializable;
+import java.util.AbstractList;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+
+public class UnrolledLinkedList<E> extends AbstractList<E> implements List<E> {
+	
+	private int size;
+	
+	private int modCount;
+	
+	private int nodeCapacity;
+	
+	private ListNode firstNode;
+	
+	private ListNode lastNode;
+	
+	public UnrolledLinkedList(int nodeCapacity) throws IllegalAccessException {
+		
+		if(nodeCapacity < 8) {
+			throw new IllegalArgumentException("nodeCapacity < 8");
+		} 
+		
+		this.nodeCapacity = nodeCapacity;
+		firstNode = new ListNode();
+		lastNode = firstNode;
+	}
+	
+	public UnrolledLinkedList() throws IllegalAccessException {
+		this(16);
+	}
+	
+	public boolean isEmpty() {
+	   return size <= 0;	
+	}
+	
+	public boolean contains(Object o) {
+		return indexOf(o) != -1;
+	}
+	
+	public Iterator<E> iterator(){
+		return new ULListIterator(firstNode, -1, -1);
+	}
+	
+	public boolean add(E element){
+		insertIntoNode(lastNode, lastNode.numElements, element);
+		return true;
+	}
+	
+	public void insertIntoNode(ListNode node, int ptr, E element){
+		
+		//check If node is full
+		if(node.numElements == nodeCapacity){
+			
+			//create new Node
+			ListNode newNode = new ListNode();
+			
+			//move half of elements into new node
+			int elementsToMove = nodeCapacity / 2;
+			int startIndex = nodeCapacity - elementsToMove;
+			
+			for(int i=0; i<elementsToMove; i++) {
+				newNode.elements[i] = node.elements[startIndex + i];
+				node.elements[startIndex + i] = null;
+			}
+			
+			node.numElements -= elementsToMove;
+			newNode.numElements = elementsToMove;
+			
+			//insert new node into node
+			newNode.next = node.next;
+			newNode.previous = node;
+			
+			if(node.next != null){
+				node.next.previous = newNode;
+			}
+			
+			node.next = newNode;
+			
+			if(node == lastNode){
+				lastNode = newNode;
+			}
+			
+			//check whether node is inserted into
+			//origional node or new node
+			if(ptr > node.numElements){
+				node = newNode;
+				ptr -= node.numElements;
+			}
+		}
+		
+		for(int i = node.numElements; i>ptr; i--){
+			node.elements[i] = node.elements[i-1];
+		}
+		
+		node.elements[ptr] = element;
+		node.numElements++;
+		modCount++;
+		size++;
+	}
+	
+	public boolean remove(Object o){
+		
+		ListNode node = firstNode;
+		
+		if(o == null){
+			
+			while(node != null){
+				
+				for(int i=0; i < node.numElements; i++){
+					
+					if(node.elements[i] == null) {
+						removeFromNode(node, i);
+						return true;
+					}
+				}
+			}
+			
+		} else {
+			
+			while(node != null){
+				
+				for(int i=0; i < node.numElements; i++){
+					
+					if(o.equals(node.elements[i])) {
+						removeFromNode(node, i);
+						return true;
+					}
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	private void removeFromNode(ListNode node, int ptr){
+		
+		node.numElements--;
+		
+		for(int i=ptr; i < node.numElements; i++){
+			node.elements[i] = node.elements[i+1];
+		}
+		
+		node.elements[node.numElements] = null;
+		
+		if(node.next != null && node.next.numElements + node.numElements <= nodeCapacity) {
+			mergeWithNextNode(node);
+		} else if(node.previous != null && node.previous.numElements + node.numElements <= nodeCapacity){
+			mergeWithNextNode(node.previous);
+		}
+	}
+	
+	private void mergeWithNextNode(ListNode node){
+	    
+		ListNode next = node.next;
+		
+		for(int i = 0; i < next.numElements; i++ ) {
+			node.elements[node.numElements + i] = next.elements[i];
+            next.elements[i] = null;			
+		}
+		
+		node.numElements += next.numElements;
+		
+		if(next.next != null){
+			next.next.previous = node;
+		}
+		
+		node.next = next.next.next;
+		
+		if(next == lastNode){
+			lastNode = node;
+		}
+	}
+	
+	private class ListNode {
+		
+		ListNode next;
+		ListNode previous;
+		int numElements = 0;
+		
+		Object[] elements;
+		
+		ListNode() {
+			elements = new Object[nodeCapacity];
+		}
+		
+	}
+	
+	private class ULListIterator implements ListIterator<E>{
+		
+		ListNode currNode;
+		int ptr;
+		int index;
+		int expectedModCount = modCount;
+		
+		ULListIterator(ListNode node, int ptr, int index) {
+			this.currNode = node;
+			this.ptr = ptr;
+			this.index = index;
+		}
+		
+		public boolean hasNext(){
+			return (index < size-1);
+		}
+		
+		public boolean hasPrevious(){
+			return index > 0;
+		}
+		
+		public void checkForMedification() {
+			
+			if(modCount != expectedModCount) {
+				throw new ConcurrentModificationException();
+			}
+		}
+		
+		public E previous() {
+			
+			ptr--;
+			
+			if(ptr < 0) {
+				
+				if(currNode.previous != null) {
+					currNode = currNode.previous;
+				} else {
+					throw new NoSuchElementException();
+				}
+			} 
+			
+			index--;
+			checkForMedification();
+			return (E) currNode.elements[ptr];
+			
+		}
+		
+		public E next() {
+			
+			ptr++;
+			if(ptr >= currNode.numElements) {
+				
+				if(currNode.next != null) {
+					currNode = currNode.next;
+					ptr = 0;
+				} else {
+					throw new NoSuchElementException();
+				}
+			} 
+			
+			index++;
+			checkForMedification();
+			
+		    return (E) currNode.elements[ptr];
+		}
+
+		@Override
+		public void add(E e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public int nextIndex() {
+			return (index+1);
+		}
+
+		@Override
+		public int previousIndex() {
+			return (index-1);
+		}
+
+		@Override
+		public void remove() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void set(E e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+
+	@Override
+	public E get(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int size() {
+		return size;
+	}
+	
+}

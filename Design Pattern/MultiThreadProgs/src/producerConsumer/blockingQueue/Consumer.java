@@ -1,0 +1,26 @@
+package producerConsumer.blockingQueue;
+
+import java.util.concurrent.BlockingQueue;
+
+public class Consumer implements Runnable {
+
+	private final BlockingQueue<Integer> sharedQueue;
+	
+	Consumer(BlockingQueue<Integer> sharedQueue){
+		this.sharedQueue = sharedQueue;
+	}
+
+	@Override
+	public void run() {
+
+		while(true){
+			try {
+				System.out.println("Consumed "+sharedQueue.take());
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+}
