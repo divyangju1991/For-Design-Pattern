@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="executeService.MyRunnable"/>
-<fullyQualifiedTypeName name="java.util.concurrent.Callable"/>
-<fullyQualifiedTypeName name="java.util.concurrent.ExecutorService"/>
-<fullyQualifiedTypeName name="callable.SumIntegerCallable"/>
-<fullyQualifiedTypeName name="callable.SquareDoubleCallable"/>
-<fullyQualifiedTypeName name="semaphore.simple.SemaphoreEx"/>
-<fullyQualifiedTypeName name="semaphore.simple.IncrementSemaphore"/>
-<fullyQualifiedTypeName name="semaphore.simple.DecrementSemaphore"/>
-<fullyQualifiedTypeName name="java.util.concurrent.Semaphore"/>
-<fullyQualifiedTypeName name="semaphore.producerconsumer.Producer"/>
-<fullyQualifiedTypeName name="semaphore.producerconsumer.Consumer"/>
-<fullyQualifiedTypeName name="decorator.Bevarage"/>
-<fullyQualifiedTypeName name="decorator.CommonBevarage"/>
-<fullyQualifiedTypeName name="decorator.Sugar"/>
-<fullyQualifiedTypeName name="threadsequence.NumberGenerator"/>
-<fullyQualifiedTypeName name="threadsequence.SequenceGeneratorTask"/>
 <fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="java.lang.InterruptedException"/>
 <fullyQualifiedTypeName name="java.util.concurrent.BrokenBarrierException"/>
@@ -38,7 +22,6 @@
 <fullyQualifiedTypeName name="java.util.Map.Entry"/>
 <fullyQualifiedTypeName name="java.util.Collection"/>
 <fullyQualifiedTypeName name="java.util.Set"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
 <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
 <fullyQualifiedTypeName name="java.util.concurrent.Executors"/>
@@ -54,10 +37,27 @@
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="java.util.stream.Collector"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.util.stream.Collectors"/>
 <fullyQualifiedTypeName name="java.io.ObjectInput"/>
 <fullyQualifiedTypeName name="java.io.ObjectOutput"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="throwPrapogation.CustomExcrption"/>
+<fullyQualifiedTypeName name="abstractFactory.debuging.inheritanceByClass.ChildClass"/>
+<fullyQualifiedTypeName name="abstractFactory.debuging.inheritanceByClass.SuperClass"/>
+<fullyQualifiedTypeName name="factoryex.debuging.byinterface.model.A2Inventory"/>
+<fullyQualifiedTypeName name="factoryex.debuging.byinterface.model.DUInventory"/>
+<fullyQualifiedTypeName name="factoryex.debuging.byinterface.dao.A2InventoryDaoImpl"/>
+<fullyQualifiedTypeName name="factoryex.debuging.byinterface.dao.DUInventoryDaoImpl"/>
+<fullyQualifiedTypeName name="factoryex.debuging.byinterface.manager.InventoryManager"/>
+<fullyQualifiedTypeName name="factoryex.debuging.byinterface.model.Inventory"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="factoryex.debuging.byinterface.exception.BlackListException"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="factoryex.debuging.byinterface.dao.InventoryDao"/>
+<fullyQualifiedTypeName name="factoryex.debuging.byinterface.constant.DeviceType"/>
+<fullyQualifiedTypeName name="factoryex.debuging.byinterface.model.CallHomeBean"/>
+<fullyQualifiedTypeName name="java.util.HashSet"/>
+<fullyQualifiedTypeName name="java.util.stream.Stream"/>
+<fullyQualifiedTypeName name="java.util.stream.Collectors"/>
 </qualifiedTypeNameHistroy>

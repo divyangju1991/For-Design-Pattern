@@ -17,7 +17,8 @@ public final class Immutable3 {
 	public Immutable3(Integer id, String name, String[] string){
 		this.id = id;
 		this.name = name;
-		this.list = Collections.unmodifiableList(string); //Arrays.asList(string);
+		//this.list = Collections.unmodifiableList(string); //Copiletime Error since List Param is required
+		this.list = Collections.unmodifiableList(Arrays.asList(string));
 		
 		//assign all variables with new keyword
 	}
